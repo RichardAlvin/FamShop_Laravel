@@ -27,7 +27,10 @@
                             Welcome back, {{ auth()->user()->name }}
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">My Dashboard</a></li>
+                            <li><a class="dropdown-item" href="#">My Profile</a></li>
+                            @can('admin')
+                            <li><a class="dropdown-item" href="#">Admin Dashboard</a></li>
+                            @endcan
                             <li><hr class="dropdown-divider"></li>
                             <li>
                                 <form action="/logout" method="post">
