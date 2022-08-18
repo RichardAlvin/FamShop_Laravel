@@ -26,7 +26,7 @@ class DashboardProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.products.create');
     }
 
     /**
@@ -37,7 +37,17 @@ class DashboardProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|max:125',
+            'type' => 'required',
+            'stock' => 'required',
+            'price' => 'required',
+            'desc' => 'required'
+        ]);
+
+        Product::create($validatedData);
+
+        return redirect('/dashboard/products')->with('success', "New Product has been added!");
     }
 
     /**
@@ -48,7 +58,9 @@ class DashboardProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        return view('dashboard.products.show', [
+            'product' => $product
+        ]);
     }
 
     /**
