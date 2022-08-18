@@ -71,7 +71,9 @@ class DashboardProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        return view('dashboard.products.edit', [
+            'product' => $product
+        ]);
     }
 
     /**
@@ -94,6 +96,7 @@ class DashboardProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        Product::destroy($product->id);
+        return redirect('/dashboard/products')->with('success', 'Product has been deleted!');
     }
 }
