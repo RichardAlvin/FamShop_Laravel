@@ -20,9 +20,8 @@
         <div class="mb-3">
             <label for="type" class="form-label">Type</label>
             <select class="form-select" name="type">
-                <option value="electronik">Elektronik</option>
+                <option value="electronik">Listrik</option>
                 <option value="perabotan">Perabotan</option>
-                <option value="lampu">Lampu</option>
                 <option value="karpet">Karpet</option>
                 <option value="kosmetik">Kosmetik</option>
                 <option value="Perkakas">Perkakas</option>
