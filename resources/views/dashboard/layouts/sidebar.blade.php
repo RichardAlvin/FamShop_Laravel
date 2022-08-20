@@ -14,6 +14,12 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a class="nav-link {{ Request::is('dashboard/bestsellers*') ? 'active': '' }}" href="/dashboard/bestsellers">
+                    <span data-feather="file"></span>
+                    Best Seller
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="#">
                     <span data-feather="shopping-cart"></span>
                     Comment

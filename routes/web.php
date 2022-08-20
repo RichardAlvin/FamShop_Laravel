@@ -48,3 +48,5 @@ Route::post('/register', [RegisterController::class, 'store']);
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('admin');
 
 Route::resource('/dashboard/products', DashboardProductController::class)->middleware('admin');
+
+Route::resource('/dashboard/bestsellers', DashboardBestsellerController::class)->middleware('admin');
