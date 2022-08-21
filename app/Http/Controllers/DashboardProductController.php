@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class DashboardProductController extends Controller
 {
@@ -90,7 +91,26 @@ class DashboardProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $rules = [
+            'name' => 'required|max:125',
+            'type' => 'required',
+            'stock' => 'required',
+            'price' => 'required',
+            'image' => 'image|file|max:2048',
+            'desc' => 'required'
+        ];
+
+        $validatedData = $request->validate($rules);
+
+        if ($request->file('image')) {
+            if ($request->oldImage) {
+                Storage::delete($request->oldImage);
+            }
+            $validatedData['image'] = $request->file('image')->store('product-images');
+        };
+
+        Product::where('id', $product->id)->update($validatedData);
+        return redirect('/dashboard/products')->with('success', "Edit Product success!");
     }
 
     /**
@@ -101,6 +121,9 @@ class DashboardProductController extends Controller
      */
     public function destroy(Product $product)
     {
+        if ($product->image) {
+            Storage::delete($product->image);
+        }
         Product::destroy($product->id);
         return redirect('/dashboard/products')->with('success', 'Product has been deleted!');
     }
