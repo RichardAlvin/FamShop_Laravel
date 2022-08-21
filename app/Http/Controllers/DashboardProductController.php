@@ -42,8 +42,13 @@ class DashboardProductController extends Controller
             'type' => 'required',
             'stock' => 'required',
             'price' => 'required',
+            'image' => 'image|file|max:2048',
             'desc' => 'required'
         ]);
+
+        if ($request->file('image')) {
+            $validatedData['image'] = $request->file('image')->store('product-images');
+        };
 
         Product::create($validatedData);
 

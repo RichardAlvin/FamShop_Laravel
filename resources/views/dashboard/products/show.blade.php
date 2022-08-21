@@ -11,7 +11,13 @@
             <p>Created at {{ $product->created_at }}</p>
             <p>Type: {{ $product->type }}</p>
 
-            <img src="https://source.unsplash.com/1200x400" class="img-fluid">
+            @if ($product->image)
+                <div>
+                    <img src="{{ asset('storage/'.$product->image) }}" alt="{{ $product->type }}" class="img-fluid">
+                </div>
+            @else
+                <img src="https://source.unsplash.com/1200x400" class="img-fluid">
+            @endif
 
             <p class="my-3 fs-5">{{ $product->desc }}</p>
         </div>

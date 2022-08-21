@@ -32,7 +32,7 @@
                     <td>{{ $product->price }}</td>
                     <td>
                         <a href="/dashboard/products/{{ $product->id }}" class="badge bg-info">Detail</a>
-                        <a href="/dashboard/products/{{ $product->id }}" class="badge bg-warning">Edit</a>
+                        <a href="/dashboard/products/{{ $product->id }}/edit" class="badge bg-warning">Edit</a>
                         <form action="/dashboard/products/ {{ $product->id }}" method="post" class="d-inline">
                             @method('delete')
                             @csrf
