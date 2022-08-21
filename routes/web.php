@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboardProductController;
+use App\Http\Controllers\DashboardUserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\LoginController;
@@ -48,5 +49,7 @@ Route::post('/register', [RegisterController::class, 'store']);
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('admin');
 
 Route::resource('/dashboard/products', DashboardProductController::class)->middleware('admin');
+
+Route::resource('/dashboard/users', DashboardUserController::class)->middleware('admin');
 
 Route::resource('/dashboard/bestsellers', DashboardBestsellerController::class)->middleware('admin');
