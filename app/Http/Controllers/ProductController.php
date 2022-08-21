@@ -12,7 +12,7 @@ class ProductController extends Controller
         return view('product', [
             'title' => 'AsanArizona | Product',
             'active' => 'product',
-            'products' => Product::get()
+            'products' => Product::latest()->filter(request(['search']))->paginate(9)->withQueryString()
         ]);
     }
 }

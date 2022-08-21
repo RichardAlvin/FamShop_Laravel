@@ -11,7 +11,7 @@
 </div>
 @endif
 
-<div class="table-responsive col-lg-8">
+<div class="table-responsive col-lg-6">
     <table class="table">
         <thead>
             <tr>

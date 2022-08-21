@@ -37,6 +37,14 @@
                     Customers
                 </a>
             </li>
+
+            <hr>
+            <li class="nav-item">
+                <a class="nav-link" href="/">
+                    <span data-feather="users"></span>
+                    Home
+                </a>
+            </li>
         </ul>
     </div>
 </nav>
