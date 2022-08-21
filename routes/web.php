@@ -40,6 +40,8 @@ Route::get('/comment', function () {
     return view('comment');
 });
 
+Route::post('/comment', [CommentController::class, 'store']);
+
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
