@@ -12,13 +12,14 @@
 @endif
 
 <div class="table-responsive col-lg-8">
-    <a href="/dashboard/products/create" class="btn btn-primary">Add Users</a>
+    <a href="/dashboard/users/create" class="btn btn-primary">Add Users</a>
     <table class="table">
         <thead>
             <tr>
             <th scope="col">ID</th>
             <th scope="col">Name</th>
             <th scope="col">Email</th>
+            <th scope="col">Is_Admin</th>
             <th scope="col">Created_At</th>
             <th scope="col">Action</th>
             </tr>
@@ -29,6 +30,11 @@
                     <th scope="row">{{ $loop->iteration }}</th>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
+                    @if($user->is_admin)
+                    <td>Yes</td>
+                    @else
+                    <td>No</td>
+                    @endif
                     <td>{{ $user->created_at }}</td>
                     <td>
                         <a href="/dashboard/users/{{ $user->id }}/edit" class="badge bg-warning">Edit</a>

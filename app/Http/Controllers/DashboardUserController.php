@@ -26,7 +26,7 @@ class DashboardUserController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.users.create');
     }
 
     /**
@@ -37,7 +37,16 @@ class DashboardUserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|max:125',
+            'is_admin' => 'required',
+            'email' => 'required|email:dns|unique:users',
+            'password' => 'required|min:5|max:255'
+        ]);
+
+        User::create($validatedData);
+
+        return redirect('/dashboard/users')->with('success', "New User has been added!");
     }
 
     /**
