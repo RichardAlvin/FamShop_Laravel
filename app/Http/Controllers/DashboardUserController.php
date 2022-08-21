@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class DashboardUserController extends Controller
 {
@@ -40,9 +41,11 @@ class DashboardUserController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|max:125',
             'is_admin' => 'required|boolean',
-            'email' => 'required|email:dns|unique:users',
+            'email' => 'required',
             'password' => 'required|min:5|max:255'
         ]);
+
+        $validatedData['password'] = Hash::make($validatedData['password']);
 
         User::create($validatedData);
 
@@ -68,7 +71,9 @@ class DashboardUserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('dashboard.users.edit', [
+            'user' => $user
+        ]);
     }
 
     /**
@@ -91,6 +96,7 @@ class DashboardUserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        User::destroy($user->id);
+        return redirect('/dashboard/users')->with('success', 'User has been deleted!');
     }
 }
