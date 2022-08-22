@@ -12,6 +12,8 @@
 @endif
 
 <div class="table-responsive col-lg-9">
+    <a href="/dashboard/users" class="btn btn-success">Back to Users</a>
+
     <table class="table">
         <thead>
             <tr>
