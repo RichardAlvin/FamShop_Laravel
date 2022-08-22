@@ -1,3 +1,7 @@
+<div class="fixed-bottom" style="margin-bottom:20px; margin-left:20px;">
+    <a href="/comment" class="btn btn-primary">Comment</a>
+</div>
+
 <footer class="container py-5 bg-light" style="margin-top: 30px;">
     <div class="row bg-light">
         <div class="col-12 col-md">

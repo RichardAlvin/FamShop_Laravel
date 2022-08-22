@@ -37,7 +37,10 @@ Route::get('/about', function () {
 Route::get('/product', [ProductController::class, 'index']);
 
 Route::get('/comment', function () {
-    return view('comment');
+    return view('comment', [
+        'title' => 'AsanArizona | Comment',
+        'active' => 'comment'
+    ]);
 });
 
 Route::post('/comment', [CommentController::class, 'store']);

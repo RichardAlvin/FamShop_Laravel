@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.submain')
 
 @section('title')
 <title>{{ $title }}</title>

@@ -49,8 +49,4 @@
     {{ $products->links() }}
 </div>
 
-<div class="fixed-bottom" style="margin-bottom:20px; margin-left:20px;">
-    <a href="/comment" class="btn btn-primary">Comment</a>
-</div>
-
 @endsection
