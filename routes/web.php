@@ -9,6 +9,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\DashboardCommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,3 +61,6 @@ Route::resource('/dashboard/products', DashboardProductController::class)->middl
 Route::resource('/dashboard/users', DashboardUserController::class)->middleware('admin');
 
 Route::resource('/dashboard/bestsellers', DashboardBestsellerController::class)->middleware('admin');
+
+Route::get('/dashboard/comments/{id}', [DashboardCommentController::class, 'index'])->middleware('admin');
+Route::delete('/dashboard/comments', [DashboardCommentController::class, 'delete'])->middleware('admin');
