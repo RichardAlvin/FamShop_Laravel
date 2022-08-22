@@ -9,10 +9,11 @@
 
 <form action="/comment" method="post">
     @csrf
+    <input type="hidden" id="user_id" name="user_id" value="{{ auth()->user()->id }}">
     <div class="mb-3">
-        <label for="star" class="form-label">Star</label>
-        <input type="number" class="form-control @error('star') is-invalid @enderror" name="star" id="star" required value="{{ old('star') }}">
-        @error('star')
+        <label for="stars" class="form-label">Star</label>
+        <input type="number" class="form-control @error('stars') is-invalid @enderror" name="stars" id="stars" required value="{{ old('stars') }}">
+        @error('stars')
         <div class="invalid-feedback">
             {{ $message }}
         </div>

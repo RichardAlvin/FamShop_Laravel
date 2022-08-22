@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardUserController;
 use App\Http\Controllers\DashboardBestsellerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 
@@ -41,9 +42,9 @@ Route::get('/comment', function () {
         'title' => 'AsanArizona | Comment',
         'active' => 'comment'
     ]);
-});
+})->middleware('auth');
 
-Route::post('/comment', [CommentController::class, 'store']);
+Route::post('/comment', [CommentController::class, 'store'])->middleware('auth');
 
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
