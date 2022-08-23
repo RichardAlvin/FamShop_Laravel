@@ -48,7 +48,10 @@ class DashboardBestsellerController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        return view('dashboard.products.show', [
+            'product' => $product,
+            'temp' => 'bestseller'
+        ]);
     }
 
     /**
@@ -71,7 +74,7 @@ class DashboardBestsellerController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        dd($request);
     }
 
     /**

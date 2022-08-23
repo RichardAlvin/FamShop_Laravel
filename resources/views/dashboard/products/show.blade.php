@@ -6,7 +6,11 @@
         <div class="col-lg-8">
             <h1 class="mb-3">{{ $product->name }}</h1>
 
-            <a href="/dashboard/products" class="btn btn-success">Back to Products</a>
+            @if ($temp == "bestseller")
+                <a href="/dashboard/bestsellers" class="btn btn-success">Back</a>
+            @else
+                <a href="/dashboard/products" class="btn btn-success">Back to Product</a>
+            @endif
             <hr>
             <p>Created at {{ $product->created_at }}</p>
             <p>Type: {{ $product->type }}</p>
