@@ -25,6 +25,12 @@
                     Users
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link {{ Request::is('dashboard/sales*') ? 'active': '' }}" href="/dashboard/sales">
+                    <span data-feather="file"></span>
+                    Sales
+                </a>
+            </li>
             <hr>
             <li class="nav-item">
                 <a class="nav-link" href="/">
