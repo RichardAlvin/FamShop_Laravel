@@ -27,7 +27,16 @@
         @foreach ($products as $product)
         <div class="col-md-4">
             <div class="card">
-                <img src="https://source.unsplash.com/400x400/random" class="card-img-top" alt="...">
+                <div class="content" style="display:inline-block; position:relative;">
+                    <img src="https://source.unsplash.com/400x400/random" class="card-img-top" alt="..."> 
+                    <form action="/cart" method="POST">
+                        @csrf
+                        <input type="hidden" name="user_id" id="user_id" value="{{  auth()->user()->id }}">
+                        <input type="hidden" name="product_id" id="product_id" value="{{ $product->id }}">
+                        <input type="hidden" name="qty" id="qty" value=1>
+                        <button class="btn btn-success" style="position: absolute; bottom: 5px; right:5px;">Cart</button>
+                    </form>
+                </div>     
                 <div class="card-body">
                     <h5 class="card-title">{{ $product->name }}</h5>
                     <p class="card-text">{{ $product->desc }}</p>

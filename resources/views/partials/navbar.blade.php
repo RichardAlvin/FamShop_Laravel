@@ -27,7 +27,7 @@
                             Welcome back, {{ auth()->user()->name }}
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">My Profile</a></li>
+                            <li><a class="dropdown-item" href="/cart/ {{ auth()->user()->id }}">My Cart</a></li>
                             @can('admin')
                             <li><a class="dropdown-item" href="/dashboard">Admin Dashboard</a></li>
                             @endcan

@@ -6,12 +6,12 @@
 </div>
 
 @if(session()->has('success'))
-<div class="alert alert-success col-lg-8" role="alert">
+<div class="alert alert-success col-lg-10" role="alert">
     {{ session('success') }}
 </div>
 @endif
 
-<div class="table-responsive col-lg-9">
+<div class="table-responsive col-lg-10">
     <a href="/dashboard/users/create" class="btn btn-primary">Add Users</a>
     <table class="table">
         <thead>
@@ -38,6 +38,7 @@
                     <td>{{ $user->created_at }}</td>
                     <td>
                         <a href="/dashboard/comments/{{ $user->id }}" class="badge bg-success">Comment</a>
+                        <a href="/dashboard/carts/{{ $user->id }}" class="badge bg-primary">Carts</a>
                         <a href="/dashboard/users/{{ $user->id }}/edit" class="badge bg-warning">Edit</a>
                         <form action="/dashboard/users/ {{ $user->id }}" method="post" class="d-inline">
                             @method('delete')

@@ -10,6 +10,8 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardCommentController;
+use App\Http\Controllers\CartController;
+use App\Models\Cart;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,3 +66,18 @@ Route::resource('/dashboard/bestsellers', DashboardBestsellerController::class)-
 
 Route::get('/dashboard/comments/{id}', [DashboardCommentController::class, 'index'])->middleware('admin');
 Route::delete('/dashboard/comments', [DashboardCommentController::class, 'delete'])->middleware('admin');
+
+Route::resource('/cart', CartController::class)->middleware('auth');
+
+Route::get('/dashboard/carts/{id}', function ($id) {
+    return view('dashboard.cart.index', [
+        'title' => 'AsanArizona | Cart',
+        'active' => 'users',
+        'carts' => Cart::select("*")->where('user_id', $id)->get()
+    ]);
+});
+
+Route::delete('/dashboard/cart/{id}', function ($id) {
+    Cart::destroy($id);
+    return redirect()->back();
+});
