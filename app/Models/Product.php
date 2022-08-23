@@ -17,4 +17,9 @@ class Product extends Model
             return $query->where('name', 'like', '%' . $filters['search'] . '%');
         }
     }
+
+    public function cart()
+    {
+        return $this->hasMany(Cart::class);
+    }
 }
