@@ -12,7 +12,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardCommentController;
 use App\Http\Controllers\CartController;
 use App\Models\Cart;
-
+use App\Models\Product;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,9 +25,11 @@ use App\Models\Cart;
 */
 
 Route::get('/', function () {
+    $bestsellers = Product::select("*")->where('bestseller', 1)->get();
     return view('home', [
         'title' => 'AsanArizona | Home',
-        'active' => 'home'
+        'active' => 'home',
+        'bestsellers' => $bestsellers
     ]);
 });
 

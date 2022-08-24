@@ -31,7 +31,9 @@
                     <img src="https://source.unsplash.com/400x400/random" class="card-img-top" alt="..."> 
                     <form action="/cart" method="POST">
                         @csrf
-                        <input type="hidden" name="user_id" id="user_id" value="{{  auth()->user()->id }}">
+                        @if(auth()->user())
+                            <input type="hidden" name="user_id" id="user_id" value="{{  auth()->user()->id }}">
+                        @endif
                         <input type="hidden" name="product_id" id="product_id" value="{{ $product->id }}">
                         <input type="hidden" name="qty" id="qty" value=1>
                         <button class="btn btn-success" style="position: absolute; bottom: 5px; right:5px;">Cart</button>
