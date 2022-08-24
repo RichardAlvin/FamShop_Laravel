@@ -12,7 +12,7 @@
 @endif
 
 <div class="table-responsive col-lg-10">
-    <a href="/dashboard/users/create" class="btn btn-primary">Add Sales</a>
+    <a href="/dashboard/sales/create" class="btn btn-primary">Add Sales</a>
     <table class="table">
         <thead>
             <tr>
@@ -31,15 +31,15 @@
             <tr>
                 <th scope="row">{{ $loop->iteration }}</th>
                 <td>{{ $sales->name }}</td>
-                <td>{{ $sales->image }}</td>
+                <td><img src="{{ asset('storage/'.$sales->image) }}" height=100 width=100/></td>
                 <td>{{ $sales->category }}</td>
                 <td>{{ $sales->phone }}</td>
                 <td>{{ $sales->company }}</td>
                 <td>{{ $sales->created_at }}</td>
                 <td>
-                    <a href="/dashboard/sales/{{ $user->id }}" class="badge bg-success">Nota</a>
-                    <a href="/dashboard/sales/{{ $user->id }}/edit" class="badge bg-warning">Edit</a>
-                    <form action="/dashboard/sales/ {{ $user->id }}" method="post" class="d-inline">
+                    <a href="/dashboard/sales/{{ $sales->id }}" class="badge bg-success">Nota</a>
+                    <a href="/dashboard/sales/{{ $sales->id }}/edit" class="badge bg-warning">Edit</a>
+                    <form action="/dashboard/sales/ {{ $sales->id }}" method="post" class="d-inline">
                         @method('delete')
                         @csrf
                         <button class="badge bg-danger border-0" onclick="return confirm('Are your sure?')">Delete</button>

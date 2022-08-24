@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Sales;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class DashboardSalesController extends Controller
 {
@@ -26,7 +27,7 @@ class DashboardSalesController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.sales.create');
     }
 
     /**
@@ -37,7 +38,21 @@ class DashboardSalesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|max:125',
+            'category' => 'required',
+            'phone' => 'required',
+            'company' => 'required',
+            'image' => 'image|file|max:2048'
+        ]);
+
+        if ($request->file('image')) {
+            $validatedData['image'] = $request->file('image')->store('sales-images');
+        };
+
+        Sales::create($validatedData);
+
+        return redirect('/dashboard/sales')->with('success', "New Sales has been added!");
     }
 
     /**
@@ -59,7 +74,10 @@ class DashboardSalesController extends Controller
      */
     public function edit(Sales $sales)
     {
-        //
+        dd($sales);
+        return view('dashboard.sales.edit', [
+            'sales' => $sales
+        ]);
     }
 
     /**
@@ -82,6 +100,11 @@ class DashboardSalesController extends Controller
      */
     public function destroy(Sales $sales)
     {
-        //
+        dd($sales);
+        if ($sales->image) {
+            Storage::delete($sales->image);
+        }
+        Sales::destroy($sales->id);
+        return redirect('/dashboard/sales')->with('success', 'Sales has been deleted!');
     }
 }
