@@ -11,6 +11,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardCommentController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\DashboardSalesController;
 use App\Models\Cart;
 use App\Models\Product;
 /*
@@ -83,3 +84,5 @@ Route::delete('/dashboard/cart/{id}', function ($id) {
     Cart::destroy($id);
     return redirect()->back();
 });
+
+Route::resource('/dashboard/sales', DashboardSalesController::class)->middleware('admin');
