@@ -55,7 +55,7 @@
             @enderror
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
-        <a href="/dashboard/products" class="btn btn-danger">Cancel</a>
+        <a href="/dashboard/sales" class="btn btn-danger">Cancel</a>
     </form>
 </div>
 

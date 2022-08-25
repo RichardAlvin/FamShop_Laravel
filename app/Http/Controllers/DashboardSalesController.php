@@ -74,7 +74,6 @@ class DashboardSalesController extends Controller
      */
     public function edit(Sales $sales)
     {
-        dd($sales);
         return view('dashboard.sales.edit', [
             'sales' => $sales
         ]);
@@ -98,13 +97,12 @@ class DashboardSalesController extends Controller
      * @param  \App\Models\Sales  $sales
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Sales $sales)
+    public function destroy(Request $request)
     {
-        dd($sales);
-        if ($sales->image) {
-            Storage::delete($sales->image);
+        if ($request->image) {
+            Storage::delete($request->image);
         }
-        Sales::destroy($sales->id);
+        Sales::destroy($request->id);
         return redirect('/dashboard/sales')->with('success', 'Sales has been deleted!');
     }
 }

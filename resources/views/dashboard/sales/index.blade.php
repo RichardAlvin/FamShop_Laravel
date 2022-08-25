@@ -39,9 +39,11 @@
                 <td>
                     <a href="/dashboard/sales/{{ $sales->id }}" class="badge bg-success">Nota</a>
                     <a href="/dashboard/sales/{{ $sales->id }}/edit" class="badge bg-warning">Edit</a>
-                    <form action="/dashboard/sales/ {{ $sales->id }}" method="post" class="d-inline">
+                    <form method="post" action="/dashboard/sales/{{$sales->id}}" class="d-inline">
                         @method('delete')
                         @csrf
+                        <input type="hidden" name="image" value={{ $sales->image }}>
+                        <input type="hidden" name="id" value={{ $sales->id }}>
                         <button class="badge bg-danger border-0" onclick="return confirm('Are your sure?')">Delete</button>
                     </form>
                 </td>
