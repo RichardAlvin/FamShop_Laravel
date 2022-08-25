@@ -72,8 +72,9 @@ class DashboardSalesController extends Controller
      * @param  \App\Models\Sales  $sales
      * @return \Illuminate\Http\Response
      */
-    public function edit(Sales $sales)
+    public function edit($id)
     {
+        $sales = Sales::where('id', "=", $id)->first();
         return view('dashboard.sales.edit', [
             'sales' => $sales
         ]);
@@ -86,9 +87,27 @@ class DashboardSalesController extends Controller
      * @param  \App\Models\Sales  $sales
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Sales $sales)
+    public function update(Request $request, $id)
     {
-        //
+        $rules = [
+            'name' => 'required|max:125',
+            'category' => 'required',
+            'phone' => 'required',
+            'company' => 'required',
+            'image' => 'image|file|max:2048'
+        ];
+
+        $validatedData = $request->validate($rules);
+
+        if ($request->file('image')) {
+            if ($request->oldImage) {
+                Storage::delete($request->oldImage);
+            }
+            $validatedData['image'] = $request->file('image')->store('sales-images');
+        };
+
+        Sales::where('id', $id)->update($validatedData);
+        return redirect('/dashboard/sales')->with('success', "Edit Sales success!");
     }
 
     /**
